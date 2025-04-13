@@ -17,6 +17,9 @@ importers:
       '@tailwindcss/vite':
         specifier: ^4.1.3
         version: 4.1.3(vite@6.2.6(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1))
+      '@tauri-apps/api':
+        specifier: ^2.4.1
+        version: 2.4.1
       '@vueuse/core':
         specifier: ^13.1.0
         version: 13.1.0(vue@3.5.13)
@@ -893,6 +896,9 @@ packages:
     resolution: {integrity: sha512-lUI/QaDxLtlV52Lho6pu07CG9pSnRYLOPmKGIQjyHdTBagemc6HmgZxyjGAQ/5HMPrNeWBfTVIpQl0/jLXvWHQ==}
     peerDependencies:
       vite: ^5.2.0 || ^6
+
+  '@tauri-apps/api@2.4.1':
+    resolution: {integrity: sha512-5sYwZCSJb6PBGbBL4kt7CnE5HHbBqwH+ovmOW6ZVju3nX4E3JX6tt2kRklFEH7xMOIwR0btRkZktuLhKvyEQYg==}
 
   '@tauri-apps/cli-darwin-arm64@2.4.1':
     resolution: {integrity: sha512-QME7s8XQwy3LWClTVlIlwXVSLKkeJ/z88pr917Mtn9spYOjnBfsgHAgGdmpWD3NfJxjg7CtLbhH49DxoFL+hLg==}
@@ -4013,6 +4019,8 @@ snapshots:
       '@tailwindcss/oxide': 4.1.3
       tailwindcss: 4.1.3
       vite: 6.2.6(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1)
+
+  '@tauri-apps/api@2.4.1': {}
 
   '@tauri-apps/cli-darwin-arm64@2.4.1':
     optional: true
