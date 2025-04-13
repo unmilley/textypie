@@ -1,0 +1,34 @@
+{
+	"$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
+	"productName": "textypie",
+	"version": "1.0.0",
+	"identifier": "com.textypie.dev",
+	"build": {
+		"frontendDist": "../dist",
+		"devUrl": "http://localhost:3000",
+		"beforeDevCommand": "pnpm dev",
+		"beforeBuildCommand": "pnpm generate"
+	},
+	"app": {
+		"windows": [
+			{
+				"title": "Textypie",
+				"width": 800,
+				"height": 636,
+				"resizable": true,
+				"fullscreen": false,
+				"transparent": true,
+				"decorations": false,
+				"dragDropEnabled": false
+			}
+		],
+		"security": {
+			"csp": null
+		}
+	},
+	"bundle": {
+		"active": true,
+		"targets": "all",
+		"icon": ["icons/32x32.png", "icons/128x128.png", "icons/128x128@2x.png", "icons/icon.icns", "icons/icon.ico"]
+	}
+}
