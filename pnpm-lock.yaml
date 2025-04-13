@@ -20,6 +20,9 @@ importers:
       '@tauri-apps/api':
         specifier: ^2.4.1
         version: 2.4.1
+      '@tauri-apps/plugin-opener':
+        specifier: ^2.2.6
+        version: 2.2.6
       '@vueuse/core':
         specifier: ^13.1.0
         version: 13.1.0(vue@3.5.13)
@@ -970,6 +973,9 @@ packages:
     resolution: {integrity: sha512-9Ta81jx9+57FhtU/mPIckDcOBtPTUdKM75t4+aA0X84b8Sclb0jy1xA8NplmcRzp2fsfIHNngU2NiRxsW5+yOQ==}
     engines: {node: '>= 10'}
     hasBin: true
+
+  '@tauri-apps/plugin-opener@2.2.6':
+    resolution: {integrity: sha512-bSdkuP71ZQRepPOn8BOEdBKYJQvl6+jb160QtJX/i2H9BF6ZySY/kYljh76N2Ne5fJMQRge7rlKoStYQY5Jq1w==}
 
   '@trysound/sax@0.2.0':
     resolution: {integrity: sha512-L7z9BgrNEcYyUYtF+HaEfiS5ebkh9jXqbszz7pC0hRBPaatV0XjSD3+eHrpqFemQfgwiFF0QPIarnIihIDn7OA==}
@@ -4068,6 +4074,10 @@ snapshots:
       '@tauri-apps/cli-win32-arm64-msvc': 2.4.1
       '@tauri-apps/cli-win32-ia32-msvc': 2.4.1
       '@tauri-apps/cli-win32-x64-msvc': 2.4.1
+
+  '@tauri-apps/plugin-opener@2.2.6':
+    dependencies:
+      '@tauri-apps/api': 2.4.1
 
   '@trysound/sax@0.2.0': {}
 
