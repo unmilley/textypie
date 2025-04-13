@@ -1,0 +1,47 @@
+@import 'tailwindcss';
+@plugin 'daisyui' {
+	themes: light --default, dark --prefersdark;
+	root: ':root';
+	/* include: ; */
+	exclude: ;
+	/* prefix: ; */
+	logs: false;
+}
+@plugin "daisyui/theme" {
+	name: 'light';
+	default: false;
+	prefersdark: false;
+	color-scheme: 'light';
+	--radius-selector: 0.5rem;
+	--radius-field: 0.25rem;
+	--radius-box: 1rem;
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+	--border: 1px;
+	--depth: 0;
+	--noise: 1;
+}
+@plugin 'daisyui/theme' {
+	name: 'dark';
+	default: false;
+	prefersdark: false;
+	color-scheme: 'dark';
+	--radius-selector: 0.5rem;
+	--radius-field: 0.25rem;
+	--radius-box: 0.75rem;
+	--size-selector: 0.25rem;
+	--size-field: 0.25rem;
+	--border: 1px;
+	--depth: 0;
+	--noise: 0;
+}
+
+.qwe {
+	border: 1px solid salmon;
+}
+.qwe2 > * {
+	border: 1px solid salmon;
+}
+.qwe3 * {
+	border: 1px solid salmon;
+}
