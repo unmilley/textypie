@@ -2,6 +2,7 @@
 	<div class="w-dvw h-dvh">
 		<pre @click="text = Math.floor(Number(new Date()) * Math.random()).toString()">text: {{ text }}</pre>
 		<vue-monaco-editor v-model:value="text" theme="vs-dark" :options="MONACO_EDITOR_OPTIONS" @mount="handleMount" />
+		<ActionBar v-model="text" />
 	</div>
 </template>
 

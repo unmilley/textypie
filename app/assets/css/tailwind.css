@@ -45,3 +45,10 @@
 .qwe3 * {
 	border: 1px solid salmon;
 }
+
+@layer utilities {
+	.menu {
+		--menu-active-fg: var(--color-base-content);
+		--menu-active-bg: var(--color-base-300);
+	}
+}
