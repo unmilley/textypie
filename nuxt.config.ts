@@ -5,12 +5,20 @@ export default defineNuxtConfig({
 	devtools: { enabled: true },
 	future: { compatibilityVersion: 4 },
 	ssr: false,
-	modules: ['@nuxt/icon', '@vueuse/nuxt', '@nuxtjs/color-mode'],
+	modules: ['@nuxt/icon', '@vueuse/nuxt', '@nuxtjs/color-mode', 'notivue/nuxt'],
 
-	css: ['./assets/css/tailwind.css'],
+	css: [
+		'./assets/css/tailwind.css',
+		'notivue/notification.css',
+		'notivue/animations.css',
+		'notivue/notification-progress.css',
+	],
 
 	icon: {
 		mode: 'svg',
+	},
+	notivue: {
+		position: 'bottom-right',
 	},
 	colorMode: {
 		preference: 'system',
