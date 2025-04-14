@@ -16,6 +16,7 @@ export default defineNuxtConfig({
 
 	icon: {
 		mode: 'svg',
+		customCollections: [{ dir: 'app/assets/icon', prefix: 'textypie' }],
 	},
 	notivue: {
 		position: 'bottom-right',
