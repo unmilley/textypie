@@ -1,7 +1,11 @@
 <template>
 	<div class="w-dvw h-dvh">
-		<pre @click="text = Math.floor(Number(new Date()) * Math.random()).toString()">text: {{ text }}</pre>
-		<vue-monaco-editor v-model:value="text" theme="vs-dark" :options="MONACO_EDITOR_OPTIONS" @mount="handleMount" />
+		<vue-monaco-editor
+			v-model:value="text"
+			:theme="$colorMode.value === 'dark' ? 'vs-dark' : 'vs-light'"
+			:options="MONACO_EDITOR_OPTIONS"
+			@mount="handleMount"
+		/>
 		<ActionBar v-model="text" />
 	</div>
 </template>
@@ -24,6 +28,8 @@ const MONACO_EDITOR_OPTIONS: monacoEditor.editor.IStandaloneEditorConstructionOp
 	lineHeight: 20,
 	useTabStops: false,
 	fontSize: 12,
+	fontFamily: '"Fira Code", Menlo, Monaco, "Courier New", monospace',
+	fontLigatures: true,
 	stickyScroll: { enabled: false },
 	unicodeHighlight: {
 		invisibleCharacters: false,

@@ -1,5 +1,5 @@
 <template>
-	<Body class="w-dvw h-dvh overflow-hidden">
+	<Body class="w-dvw h-dvh bg-base-200 overflow-hidden">
 		<NuxtLayout>
 			<Notivue v-slot="item">
 				<Notification :item="item" :theme="$colorMode.value === 'dark' ? darkTheme : lightTheme">

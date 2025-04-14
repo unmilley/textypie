@@ -29,6 +29,17 @@ export default defineNuxtConfig({
 		storage: 'cookie',
 	},
 
+	app: {
+		head: {
+			title: 'Textypie',
+			link: [
+				{ rel: 'preconnect', href: 'https://fonts.googleapis.com' },
+				{ rel: 'preconnect', href: 'https://fonts.gstatic.com', crossorigin: '' },
+				{ href: 'https://fonts.googleapis.com/css2?family=Fira+Code&display=swap', rel: 'stylesheet' },
+			],
+		},
+	},
+
 	imports: { dirs: ['./types'] },
 
 	vite: {

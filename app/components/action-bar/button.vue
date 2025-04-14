@@ -1,5 +1,5 @@
 <template>
-	<button class="btn btn-sm border border-base-content/50" @click.prevent.stop="open()">
+	<button class="btn bg-base-300 btn-sm border border-base-content/30" @click.prevent.stop="open()">
 		<Icon name="bx:search" size="1.25rem" class="opacity-50" />
 		<div class="divider divider-horizontal !w-1 mx-0"></div>
 		<span class="w-32 text-left text-sm opacity-80">{{ isVisible ? 'Select an action' : 'Search' }}</span>

@@ -12,6 +12,10 @@
 	default: false;
 	prefersdark: false;
 	color-scheme: 'light';
+	--color-base-100: oklch(100% 0 0);
+	--color-base-200: oklch(96% 0 0);
+	--color-base-300: oklch(89% 0 0);
+	--color-base-content: oklch(49% 0 0);
 	--radius-selector: 0.5rem;
 	--radius-field: 0.25rem;
 	--radius-box: 1rem;
@@ -19,13 +23,17 @@
 	--size-field: 0.25rem;
 	--border: 1px;
 	--depth: 0;
-	--noise: 1;
+	--noise: 0;
 }
 @plugin 'daisyui/theme' {
 	name: 'dark';
 	default: false;
 	prefersdark: false;
 	color-scheme: 'dark';
+	--color-base-100: oklch(0.27 0 0);
+	--color-base-200: oklch(0.24 0 0);
+	--color-base-300: oklch(0.21 0 0);
+	--color-base-content: oklch(0.88 0 0);
 	--radius-selector: 0.5rem;
 	--radius-field: 0.25rem;
 	--radius-box: 0.75rem;
@@ -44,6 +52,11 @@
 }
 .qwe3 * {
 	border: 1px solid salmon;
+}
+
+@theme {
+	--font-sans: 'Fira Code', Menlo, Monaco, 'Courier New', monospace;
+	--font-mono: var(--font-sans);
 }
 
 @layer utilities {
