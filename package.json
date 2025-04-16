@@ -21,7 +21,7 @@
 		"@tauri-apps/plugin-opener": "^2.2.6",
 		"@vueuse/core": "^13.1.0",
 		"@vueuse/nuxt": "^13.1.0",
-		"daisyui": "^5.0.19",
+		"daisyui": "^5.0.22",
 		"fuse.js": "^7.1.0",
 		"notivue": "^2.4.5",
 		"nuxt": "^3.16.2",

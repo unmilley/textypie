@@ -33,8 +33,8 @@ importers:
         specifier: ^13.1.0
         version: 13.1.0(magicast@0.3.5)(nuxt@3.16.2(@parcel/watcher@2.5.1)(@types/node@22.14.1)(db0@0.3.1)(idb-keyval@6.2.1)(ioredis@5.6.1)(lightningcss@1.29.2)(magicast@0.3.5)(rollup@4.40.0)(terser@5.39.0)(vite@6.2.6(@types/node@22.14.1)(jiti@2.4.2)(lightningcss@1.29.2)(terser@5.39.0)(yaml@2.7.1))(yaml@2.7.1))(vue@3.5.13)
       daisyui:
-        specifier: ^5.0.19
-        version: 5.0.19
+        specifier: ^5.0.22
+        version: 5.0.22
       fuse.js:
         specifier: ^7.1.0
         version: 7.1.0
@@ -1447,8 +1447,8 @@ packages:
   csstype@3.1.3:
     resolution: {integrity: sha512-M1uQkMl8rQK/szD0LNhtqxIPLpimGm8sOBwU7lLnCpSbTyY3yeU1Vc7l4KT5zT4s/yOxHH5O7tIuuLOCnLADRw==}
 
-  daisyui@5.0.19:
-    resolution: {integrity: sha512-vuxloVgdmTnGpA6CFnQyLkXuqPmusHgYZ0L5Qg1pQzAYPUMc0HM2S3brnu7xRnAUq7ZMAqyoV78Fvht7nY2svg==}
+  daisyui@5.0.22:
+    resolution: {integrity: sha512-tcqbCp0nzCmIzR4GfLtPcaNEhDCKO+yw4W3REF3Aw1rNwk0/8fa2fvbnVDq5tUqglnKTesAlmlc2Ze45ZIomMg==}
 
   db0@0.3.1:
     resolution: {integrity: sha512-3RogPLE2LLq6t4YiFCREyl572aBjkfMvfwPyN51df00TbPbryL3XqBYuJ/j6mgPssPK8AKfYdLxizaO5UG10sA==}
@@ -4694,7 +4694,7 @@ snapshots:
 
   csstype@3.1.3: {}
 
-  daisyui@5.0.19: {}
+  daisyui@5.0.22: {}
 
   db0@0.3.1: {}
 
