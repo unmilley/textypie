@@ -6,7 +6,12 @@
 					<NotificationProgress :item="item" />
 				</Notification>
 			</Notivue>
-			<NuxtPage />
+			<NuxtPage
+				:transition="{
+					name: 'page',
+					mode: 'out-in',
+				}"
+			/>
 		</NuxtLayout>
 	</Body>
 </template>
@@ -45,3 +50,15 @@ watch(
 	{ deep: true, immediate: true },
 )
 </script>
+
+<style>
+.page-enter-active,
+.page-leave-active {
+	transition: all 0.2s;
+}
+.page-enter-from,
+.page-leave-to {
+	opacity: 0;
+	filter: blur(0.05rem);
+}
+</style>
