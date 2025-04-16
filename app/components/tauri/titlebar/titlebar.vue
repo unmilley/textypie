@@ -3,10 +3,12 @@
 		<div
 			id="titlebar"
 			ref="titlebar"
-			class="navbar bg-base-300 px-0 shadow-sm fixed inset-x-0 top-0 min-h-0 h-9 select-none qwe3"
+			class="navbar bg-base-300 px-0 shadow-sm fixed inset-x-0 top-0 min-h-0 h-9 select-none"
 			v-if="appWindow"
 		>
-			<div class="navbar-start"></div>
+			<div class="navbar-start">
+				<TauriTitlebarMenu />
+			</div>
 			<div class="navbar-center">
 				<ActionBarButton />
 			</div>
