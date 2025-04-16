@@ -16,8 +16,7 @@ import { darkTheme, lightTheme } from 'notivue'
 
 const { open } = useModal('action-bar')
 
-/* TODO: change useState to any storage in browser */
-const combination = useState<Combinations>('master-key', () => [
+const { data: combination, isFinished } = useIdStorage<Combinations>('master-key', [
 	{ key: 'Ctrl', code: 'ControlLeft' },
 	{ key: 'q', code: 'KeyQ' },
 ])
@@ -31,7 +30,6 @@ const fn = (event: KeyboardEvent) => {
 	const [key0, key1] = combination.value
 
 	if (modifiedKey.has(key0.code) && key1.code === event.code) {
-		// console.log(`The ${combination.value.map(({ key }) => key).join(' + ')} combination was pressed!`)
 		open()
 		event.preventDefault()
 	}
@@ -40,6 +38,7 @@ const fn = (event: KeyboardEvent) => {
 watch(
 	combination,
 	() => {
+		if (!isFinished.value) return
 		document.removeEventListener('keypress', fn)
 		document.addEventListener('keypress', fn)
 	},
