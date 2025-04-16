@@ -6,5 +6,10 @@
 
 <script lang="ts" setup>
 const details = useTemplateRef('details')
-onClickOutside(details, () => (details.value!.open = false))
+const close = () => {
+	if (!details.value) return
+	details.value.open = false
+}
+onClickOutside(details, close)
+defineExpose({ close })
 </script>
