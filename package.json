@@ -23,6 +23,7 @@
 		"@vueuse/nuxt": "^13.1.0",
 		"daisyui": "^5.0.22",
 		"fuse.js": "^7.1.0",
+		"idb-keyval": "^6.2.1",
 		"notivue": "^2.4.5",
 		"nuxt": "^3.16.2",
 		"tailwindcss": "^4.1.4",

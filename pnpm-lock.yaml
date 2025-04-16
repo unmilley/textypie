@@ -38,6 +38,9 @@ importers:
       fuse.js:
         specifier: ^7.1.0
         version: 7.1.0
+      idb-keyval:
+        specifier: ^6.2.1
+        version: 6.2.1
       notivue:
         specifier: ^2.4.5
         version: 2.4.5(@nuxt/kit@3.16.2(magicast@0.3.5))(@nuxt/schema@3.16.2)(defu@6.1.4)
@@ -4992,8 +4995,7 @@ snapshots:
 
   human-signals@5.0.0: {}
 
-  idb-keyval@6.2.1:
-    optional: true
+  idb-keyval@6.2.1: {}
 
   ieee754@1.2.1: {}
 
