@@ -1,11 +1,15 @@
 <template>
-	<ui-dropdown>
+	<ui-dropdown ref="dropdown">
 		<summary class="ml-2 btn btn-sm btn-square btn-ghost">
 			<Icon name="textypie:logo-fill" size="2rem" />
 		</summary>
 		<ul
 			class="menu dropdown-content z-1 w-52 p-2 ml-2 mt-1 shadow-sm bg-base-100/80 backdrop-blur-xs border border-base-300 rounded-box"
 		>
+			<li @click="dropdown?.close()">
+				<nuxt-link to="/settings">Settings</nuxt-link>
+			</li>
+			<li></li>
 			<ui-dropdown class="dropdown-right">
 				<summary class="btn btn-ghost pl-3 h-8 font-normal pr-0 w-full justify-between">
 					Theme
@@ -32,6 +36,8 @@
 
 <script lang="ts" setup>
 const { $colorMode } = useNuxtApp()
+
+const dropdown = useTemplateRef('dropdown')
 
 const themes = [
 	{ value: 'dark', icon: 'bx:moon' },
