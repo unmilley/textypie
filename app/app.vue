@@ -2,9 +2,9 @@
 	<Body class="w-dvw h-dvh bg-base-200 overflow-hidden">
 		<NuxtLayout>
 			<Notivue v-slot="item">
-				<Notification :item="item" :theme="$colorMode.value === 'dark' ? darkTheme : lightTheme">
-					<NotificationProgress :item="item" />
-				</Notification>
+				<NotivueSwipe :item="item">
+					<AppNotification :item="item" />
+				</NotivueSwipe>
 			</Notivue>
 			<NuxtPage
 				:transition="{
@@ -17,8 +17,6 @@
 </template>
 
 <script setup lang="ts">
-import { darkTheme, lightTheme } from 'notivue'
-
 const { open } = useModal('action-bar')
 
 const { data: combination, isFinished } = useIdStorage<Combinations>('master-key', [

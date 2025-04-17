@@ -7,12 +7,7 @@ export default defineNuxtConfig({
 	ssr: false,
 	modules: ['@nuxt/icon', '@vueuse/nuxt', '@nuxtjs/color-mode', 'notivue/nuxt'],
 
-	css: [
-		'./assets/css/tailwind.css',
-		'notivue/notification.css',
-		'notivue/animations.css',
-		'notivue/notification-progress.css',
-	],
+	css: ['./assets/css/tailwind.css', 'notivue/animations.css'],
 
 	icon: {
 		mode: 'svg',
