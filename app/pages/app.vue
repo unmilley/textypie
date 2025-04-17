@@ -1,5 +1,5 @@
 <template>
-	<div class="w-dvw h-dvh">
+	<AppDraggableFile @change="getContent">
 		<vue-monaco-editor
 			v-model:value="text"
 			:theme="$colorMode.value === 'dark' ? 'vs-dark' : 'vs-light'"
@@ -7,7 +7,7 @@
 			@mount="handleMount"
 		/>
 		<ActionBar v-model="text" />
-	</div>
+	</AppDraggableFile>
 </template>
 
 <script lang="ts" setup>
@@ -49,5 +49,14 @@ const handleMount = (editorInstance: monacoEditor.editor.IStandaloneCodeEditor, 
 	editor.value = editorInstance
 	editor.value.addCommand(monacoEditor.KeyMod.CtrlCmd | monacoEditor.KeyCode.KeyZ, history.undo)
 	editor.value.addCommand(monacoEditor.KeyMod.CtrlCmd | monacoEditor.KeyCode.KeyY, history.redo)
+}
+
+const { file, open, save, saveAs } = useFileSystemAccess()
+
+const getContent = async (event: File) => {
+	file.value = event
+	text.value = await event.text()
+
+	push.info({ title: event.name, message: 'File is uploaded', duration: 15000 })
 }
 </script>
