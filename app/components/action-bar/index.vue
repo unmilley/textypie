@@ -1,54 +1,60 @@
 <template>
-	<Modal name="action-bar" :buttons="{ enabled: false }" class="pt-16">
-		<div class="card bg-base-200 w-auto">
-			<div class="card-body p-1">
-				<label class="input input-ghost w-full">
-					<Icon name="bx:search" size="1rem" class="opacity-50" />
-
-					<input
-						ref="inputElement"
-						v-model="action"
-						type="text"
-						class="grow"
-						@keydown.prevent.arrow-up="changeFocus('up')"
-						@keydown.prevent.arrow-down="changeFocus('down')"
-						@keydown.tab="changeFocus($event)"
-						@keyup.enter="useAction()"
-					/>
-
-					<ActionBarPlaceholders :is-visible="!action" />
-				</label>
-				<div class="relative">
-					<div class="max-h-60 overflow-x-hidden overflow-y-scroll pb-4" v-if="results.length">
-						<ul class="menu p-0 w-full">
-							<li
-								v-for="({ item }, idx) in results"
-								:key="item.name"
-								ref="list"
-								class="scroll-mb-8"
-								@mouseover="focused = idx"
-							>
-								<a class="alert" :class="{ 'menu-focus': idx === focused }" @click="useAction()">
-									<Icon :name="item.icon" size="1.25rem" />
-									<div>
-										<h3 class="font-bold">{{ item.name }} - {{ idx }}</h3>
-										<pre class="text-pretty text-xs">{{ item.description }}</pre>
-									</div>
-								</a>
-							</li>
+	<dialog
+		id="action-bar"
+		class="modal modal-top justify-center pt-16"
+		:open="isVisible"
+		@click="close"
+		@keydown.escape="close"
+	>
+		<div class="modal-box bg-base-200 w-128 rounded-xl" @click.stop="" @keydown.escape="close">
+			<div class="card bg-base-200 w-auto">
+				<div
+					class="card-body grid transition-all p-1"
+					:class="[list.length ? 'grid-rows-[0.1fr_1fr]' : 'grid-rows-[0.1fr_0fr]']"
+				>
+					<label class="input focus:outline-0 focus-within:outline-0 w-full">
+						<Icon name="bx:search" size="1rem" class="opacity-50" />
+						<input
+							ref="inputElement"
+							v-model="action"
+							class="grow"
+							type="text"
+							@keydown.prevent.arrow-up="changeFocus('up')"
+							@keydown.prevent.arrow-down="changeFocus('down')"
+							@keydown.tab="changeFocus($event)"
+							@keyup.enter="useAction()"
+						/>
+						<ActionBarPlaceholders :is-visible="!action" />
+					</label>
+					<!--  -->
+					<div v-bind="containerProps" class="max-h-80 overflow-x-hidden overflow-y-scroll">
+						<ul
+							class="menu relative p-0 w-full flex-nowrap scroll-smooth"
+							v-auto-animate="{ duration: 150 }"
+							v-bind="wrapperProps"
+						>
+							<ActionBarItem
+								v-for="{ index, data: { item } } in list"
+								:key="index + item.name"
+								:is-focused="index === focused"
+								:item="item"
+								@enter="useAction(index)"
+							/>
+							<div
+								v-show="list.length > 1"
+								class="bg-base-200 qwe pointer-events-none absolute bottom-20 left-0 right-4.5 h-16 transition-opacity [mask-image:linear-gradient(transparent,#000000)]"
+								:class="{ 'opacity-0': list.length - 1 === focused }"
+							></div>
 						</ul>
 					</div>
-					<div
-						v-if="results.length"
-						class="bg-base-100 pointer-events-none sticky bottom-0 -translate-y-12 -mt-6 flex h-16 [mask-image:linear-gradient(transparent,#000000)]"
-					></div>
 				</div>
 			</div>
 		</div>
-	</Modal>
+	</dialog>
 </template>
 
 <script lang="ts" setup>
+import { vAutoAnimate } from '@formkit/auto-animate'
 import defaultActions from '@/assets/.default.json'
 
 const input = defineModel<string>({ required: true })
@@ -59,13 +65,18 @@ const inputElement = useTemplateRef('inputElement')
 const action = shallowRef('')
 const actions = ref(defaultActions)
 const { results } = useFuse(action, actions, {
-	matchAllWhenSearchEmpty: false,
-	fuseOptions: { findAllMatches: true, keys: ['name', 'description'], threshold: 0.5 },
-	resultLimit: 5,
+	matchAllWhenSearchEmpty: true,
+	fuseOptions: { findAllMatches: true, keys: ['name', 'description', 'tags'], threshold: 1 },
+	resultLimit: 10,
+})
+const { list, containerProps, wrapperProps, scrollTo } = useVirtualList(results, {
+	itemHeight: (i) => {
+		const len = results.value[i]?.item.description.length ?? 50
+		return len <= 50 ? 78 : 98
+	},
 })
 
 const focused = ref(0)
-const lists = useTemplateRef('list')
 
 const changeFocus = (toOrEvent: 'down' | 'up' | KeyboardEvent) => {
 	if (typeof toOrEvent === 'object') {
@@ -86,9 +97,9 @@ const changeFocus = (toOrEvent: 'down' | 'up' | KeyboardEvent) => {
 	}
 }
 
-const useAction = async () => {
+const useAction = async (index?: number) => {
 	try {
-		const act = results.value[focused.value]?.item
+		const act = results.value[index ?? focused.value]?.item
 		if (!act) throw new Error('Action not found')
 
 		const module = await import(`~/assets/Scripts/${act.filename}.js`)
@@ -109,21 +120,24 @@ const useAction = async () => {
 	}
 }
 
-whenever(isVisible, () => {
-	nextTick(() => inputElement.value && inputElement.value.focus())
+watchImmediate(isVisible, (isVisible) => {
+	if (isVisible) {
+		setTimeout(() => {
+			inputElement.value && inputElement.value.focus()
+		}, 50)
+	} else action.value = ''
 })
 
 watch(results, () => {
 	focused.value = 0
 })
 
-watch(focused, (v) => {
-	if (!lists.value || !lists.value[v]) return
-
-	lists.value[v]?.scrollIntoView({
-		inline: 'start',
-		behavior: 'smooth',
-		block: 'nearest',
-	})
-})
+watch(focused, scrollTo)
 </script>
+
+<style>
+:root:has(:is(.modal[open])) {
+	overflow: hidden;
+	scrollbar-gutter: auto;
+}
+</style>
