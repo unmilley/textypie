@@ -56,6 +56,8 @@
 <script lang="ts" setup>
 import { vAutoAnimate } from '@formkit/auto-animate'
 import defaultActions from '@/assets/.default.json'
+import { importCustomScript } from '@/src/custom-scripts'
+const { $customConfig: customConfig, $isTauri } = useNuxtApp()
 
 const input = defineModel<string>({ required: true })
 
@@ -63,7 +65,8 @@ const { isVisible, close } = useModal('action-bar')
 const inputElement = useTemplateRef('inputElement')
 
 const action = shallowRef('')
-const actions = ref(defaultActions)
+const actions = computed((): Config[] => [...defaultActions, ...JSON.parse(customConfig)])
+
 const { results } = useFuse(action, actions, {
 	matchAllWhenSearchEmpty: true,
 	fuseOptions: { findAllMatches: true, keys: ['name', 'description', 'tags'], threshold: 1 },
@@ -97,12 +100,20 @@ const changeFocus = (toOrEvent: 'down' | 'up' | KeyboardEvent) => {
 	}
 }
 
+const getModule = async (filename: string) => {
+	const divided = filename.split('/')
+	if (divided.length === 1) return import(`~/assets/Scripts/${divided[0]}.js`)
+
+	if ($isTauri && divided.length === 2) return importCustomScript(divided[1] ?? '')
+	return null
+}
+
 const useAction = async (index?: number) => {
 	try {
 		const act = results.value[index ?? focused.value]?.item
 		if (!act) throw new Error('Action not found')
 
-		const module = await import(`~/assets/Scripts/${act.filename}.js`)
+		const module = await getModule(act.filename)
 		if (module.main) {
 			const { data, error, info } = module.main(input.value)
 

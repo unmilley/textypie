@@ -18,12 +18,7 @@
 
 <script lang="ts" setup>
 const { item } = defineProps<{
-	item: {
-		name: string
-		description: string
-		icon: string
-		tags: string
-	}
+	item: Config
 	isFocused: boolean
 }>()
 defineEmits<{ enter: [] }>()

@@ -29,11 +29,25 @@
 			<li @click="dropdown?.close()">
 				<nuxt-link to="/settings">Settings</nuxt-link>
 			</li>
+			<li v-if="$isTauri" @click="dropdown?.close()">
+				<a @click.prevent="openScriptsDir"> Your scripts folder </a>
+			</li>
 		</ul>
 	</ui-dropdown>
 </template>
 
 <script lang="ts" setup>
+import * as path from '@tauri-apps/api/path'
+import { openPath } from '@tauri-apps/plugin-opener'
+
+const openScriptsDir = async () => {
+	try {
+		const scriptsPath = await path.join(await path.homeDir(), '.textypie', 'scripts')
+		await openPath(scriptsPath)
+	} catch (error) {
+		console.log('error: ', error)
+	}
+}
 const { $colorMode } = useNuxtApp()
 
 const dropdown = useTemplateRef('dropdown')
