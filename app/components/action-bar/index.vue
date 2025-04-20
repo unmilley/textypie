@@ -29,7 +29,7 @@
 					<!--  -->
 					<div v-bind="containerProps" class="max-h-80 overflow-x-hidden overflow-y-scroll">
 						<ul
-							class="menu relative p-0 w-full flex-nowrap scroll-smooth"
+							class="menu p-0 w-full flex-nowrap scroll-smooth"
 							v-auto-animate="{ duration: 150 }"
 							v-bind="wrapperProps"
 						>
@@ -40,13 +40,13 @@
 								:item="item"
 								@enter="useAction(index)"
 							/>
-							<div
-								v-show="list.length > 1"
-								class="bg-base-200 qwe pointer-events-none absolute bottom-20 left-0 right-4.5 h-16 transition-opacity [mask-image:linear-gradient(transparent,#000000)]"
-								:class="{ 'opacity-0': list.length - 1 === focused }"
-							></div>
 						</ul>
 					</div>
+					<div
+						v-show="list.length > 1"
+						class="bg-base-200 pointer-events-none absolute bottom-0 left-0 right-4.5 h-16 transition-opacity [mask-image:linear-gradient(transparent,#000000)]"
+						:class="{ 'opacity-0': list.length - 1 === focused }"
+					></div>
 				</div>
 			</div>
 		</div>

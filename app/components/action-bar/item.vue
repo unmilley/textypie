@@ -29,15 +29,10 @@ const { item } = defineProps<{
 defineEmits<{ enter: [] }>()
 
 const tags = computed(() => {
-	const _tags = item.tags.split(',').map((v) => v.trim())
-	// return _tags
-	// console.log({
-	// 	data: _tags.splice(0, 5),
-	// 	isLeft: _tags.length === 4,
-	// })
+	const tags = item.tags.split(',').map((v) => v.trim())
 	return {
-		data: [..._tags].splice(0, 5),
-		isLeft: _tags.length > 5,
+		data: [...tags].splice(0, 5),
+		isLeft: tags.length > 5,
 	}
 })
 </script>
