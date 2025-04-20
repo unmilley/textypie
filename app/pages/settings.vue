@@ -8,6 +8,7 @@
 		</div>
 		<!--  -->
 		<SettingActionCombination />
+		<SettingEditor />
 	</div>
 </template>
 

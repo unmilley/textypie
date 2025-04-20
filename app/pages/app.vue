@@ -16,30 +16,34 @@ import * as monacoEditor from 'monaco-editor/esm/vs/editor/editor.api'
 
 type MonacoEditor = typeof monacoEditor
 
-const MONACO_EDITOR_OPTIONS: monacoEditor.editor.IStandaloneEditorConstructionOptions = {
-	automaticLayout: true,
-	formatOnType: true,
-	formatOnPaste: true,
-	minimap: { enabled: false },
-	tabSize: 2,
-	smoothScrolling: true,
-	linkedEditing: true,
-	folding: true,
-	lineHeight: 20,
-	useTabStops: false,
-	fontSize: 12,
-	fontFamily: '"Fira Code", Menlo, Monaco, "Courier New", monospace',
-	fontLigatures: true,
-	stickyScroll: { enabled: false },
-	unicodeHighlight: {
-		invisibleCharacters: false,
-		allowedLocales: { ru: true },
-	},
-	cursorStyle: 'line-thin',
-	glyphMargin: false,
-	cursorBlinking: 'phase',
-	cursorSmoothCaretAnimation: 'on',
-}
+const { data } = useIdStorage<MonacoEditorOptions>('editor', { lineHeight: 20, fontSize: 12 })
+
+const MONACO_EDITOR_OPTIONS = computed(
+	(): MonacoEditorOptions => ({
+		automaticLayout: true,
+		formatOnType: true,
+		formatOnPaste: true,
+		minimap: { enabled: false },
+		tabSize: 2,
+		smoothScrolling: true,
+		linkedEditing: true,
+		folding: true,
+		lineHeight: data.value.lineHeight,
+		useTabStops: false,
+		fontSize: data.value.fontSize,
+		fontFamily: '"Fira Code", Menlo, Monaco, "Courier New", monospace',
+		fontLigatures: true,
+		stickyScroll: { enabled: false },
+		unicodeHighlight: {
+			invisibleCharacters: false,
+			allowedLocales: { ru: true },
+		},
+		cursorStyle: 'line-thin',
+		glyphMargin: false,
+		cursorBlinking: 'phase',
+		cursorSmoothCaretAnimation: 'on',
+	}),
+)
 
 const text = ref(`#00ff00`)
 const history = useThrottledRefHistory(text, { deep: true, throttle: 5e3 })
