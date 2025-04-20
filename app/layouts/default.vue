@@ -1,9 +1,11 @@
 <template>
 	<div>
-		<TauriOnly>
-			<TauriTitlebar />
-		</TauriOnly>
-		<div :class="{ 'mt-9': $isTauri }" class="overflow-hidden">
+		<AppNavbar>
+			<TauriOnly>
+				<TauriTitlebarActions />
+			</TauriOnly>
+		</AppNavbar>
+		<div class="mt-9 overflow-hidden">
 			<slot />
 		</div>
 	</div>

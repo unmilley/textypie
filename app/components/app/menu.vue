@@ -6,12 +6,8 @@
 		<ul
 			class="menu dropdown-content z-1 w-52 p-2 ml-2 mt-1 shadow-sm bg-base-100/80 backdrop-blur-xs border border-base-300 rounded-box"
 		>
-			<li @click="dropdown?.close()">
-				<nuxt-link to="/settings">Settings</nuxt-link>
-			</li>
-			<li></li>
 			<ui-dropdown class="dropdown-right">
-				<summary class="btn btn-ghost pl-3 h-8 font-normal pr-0 w-full justify-between">
+				<summary class="btn btn-ghost pl-3 h-9 font-normal pr-0 w-full justify-between">
 					Theme
 					<Icon name="bx:chevron-right" size="1.25rem" />
 				</summary>
@@ -30,6 +26,9 @@
 					</li>
 				</ul>
 			</ui-dropdown>
+			<li @click="dropdown?.close()">
+				<nuxt-link to="/settings">Settings</nuxt-link>
+			</li>
 		</ul>
 	</ui-dropdown>
 </template>
