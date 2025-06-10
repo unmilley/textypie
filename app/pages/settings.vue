@@ -9,6 +9,7 @@
 		<!--  -->
 		<SettingActionCombination />
 		<SettingEditor />
+		<SettingTabs />
 	</div>
 </template>
 
