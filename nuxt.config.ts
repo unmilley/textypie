@@ -38,6 +38,12 @@ export default defineNuxtConfig({
 
 	imports: { dirs: ['./types'] },
 
+	runtimeConfig: {
+		public: {
+			umamiId: '',
+		},
+	},
+
 	vite: {
 		plugins: [tailwindcss() as any],
 		clearScreen: false,
