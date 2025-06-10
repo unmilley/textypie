@@ -22,6 +22,7 @@
 		"@tauri-apps/api": "^2.5.0",
 		"@tauri-apps/plugin-fs": "~2.3.0",
 		"@tauri-apps/plugin-opener": "^2.2.7",
+		"@unmilley/compare-arrays": "^1.0.0",
 		"@vueuse/core": "^13.3.0",
 		"@vueuse/nuxt": "^13.3.0",
 		"daisyui": "^5.0.43",

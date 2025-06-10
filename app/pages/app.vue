@@ -25,4 +25,8 @@ const getContent = async (file: File) => {
 
 	push.info({ title, message: 'File is uploaded' })
 }
+
+onMounted(async () => {
+	await generateActions(true)
+})
 </script>

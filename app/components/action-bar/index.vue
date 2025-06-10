@@ -24,7 +24,7 @@
 							@keydown.tab="changeFocus($event)"
 							@keyup.enter="useAction()"
 						/>
-						<ActionBarPlaceholders :is-visible="!action" />
+						<Placeholders :is-visible="!action" />
 					</label>
 					<!--  -->
 					<div v-bind="containerProps" class="max-h-80 overflow-x-hidden overflow-y-scroll">
@@ -55,17 +55,17 @@
 
 <script lang="ts" setup>
 import { vAutoAnimate } from '@formkit/auto-animate'
-import defaultActions from '@/assets/.default.json'
 import { importCustomScript } from '@/src/custom-scripts'
-const { $customConfig: customConfig, $isTauri } = useNuxtApp()
+const { $isTauri } = useNuxtApp()
 
 const input = defineModel<string>({ required: true })
 
 const { isVisible, close } = useModal('action-bar')
+
 const inputElement = useTemplateRef('inputElement')
 
 const action = shallowRef('')
-const actions = computed((): Config[] => [...defaultActions, ...JSON.parse(customConfig)])
+const actions = useState<Config[]>('actions', () => [])
 
 const { results } = useFuse(action, actions, {
 	matchAllWhenSearchEmpty: true,

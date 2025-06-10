@@ -8,6 +8,7 @@ import {
 	readTextFile,
 	writeTextFile,
 } from '@tauri-apps/plugin-fs'
+import { ConfigSchema } from './schemas'
 
 const fn = (filename: string) => `.textypie${filename}`
 
@@ -44,24 +45,32 @@ const generateCustomConfig = async () => {
 			const match = file.match(regex)
 
 			if (match && match[1]) {
-				const comments = match[1].trim().replace(/\*$/, '')
-				console.log('comments: ', comments)
+				const cleaned = match[1]
+					.replace(/[\n\r\u0085\u2028\u2029]/g, '')
+					.replace(/(\,)(\s*\})/g, '$2')
+					.replace(/[^{}]*({[\s\S]*}).*/, '$1')
 				let preConfig
 				try {
-					preConfig = JSON.parse(comments)
-				} catch {
+					const parsed = JSON.parse(cleaned)
+					const result = ConfigSchema.safeParse(parsed)
+					if (result.error && !result.data) throw new Error(result.error.message)
+
+					preConfig = result.data
+				} catch (error: any) {
+					push.warning({ title: `Custom: [${name}]`, message: `${error.message}`, duration: 1e4 })
 					continue
 				}
 				preConfig.filename = `custom/${name.replace('.js', '')}`
 				config.push(preConfig)
 			} else {
-				console.warn('Comment not found')
+				push.warning({ title: `Custom: [${name}]`, message: 'Meta-comment not found', duration: 1e4 })
 			}
 		}
 
 		await writeTextFile(fn('/config.json'), JSON.stringify(config, null, 2), { baseDir: BaseDirectory.Home })
-	} catch (error) {
+	} catch (error: any) {
 		console.log('error: ', error)
+		push.error({ title: 'Custom actions', message: error.message })
 	}
 	const config = await readTextFile(fn(`/config.json`), { baseDir: BaseDirectory.Home })
 	return config
