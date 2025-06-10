@@ -24,6 +24,16 @@ export default defineNuxtConfig({
 		storageKey: 'theme',
 		storage: 'cookie',
 	},
+	components: {
+		dirs: [
+			{
+				path: '~/components/ui',
+				pathPrefix: false,
+				global: true,
+			},
+			'~/components',
+		],
+	},
 
 	app: {
 		head: {

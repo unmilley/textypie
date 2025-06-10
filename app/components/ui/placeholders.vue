@@ -12,7 +12,7 @@
 		>
 			<p
 				:key="currentPlaceholder"
-				class="w-[calc(100%-2rem)] truncate pl-9 text-left text-sm font-normal text-neutral-500 sm:text-base dark:text-zinc-500"
+				class="w-[calc(100%-2rem)] truncate pl-9 text-left whitespace-pre-wrap text-sm font-normal text-base-content sm:text-base"
 			>
 				{{ placeholders[currentPlaceholder] }}
 			</p>

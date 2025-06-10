@@ -1,12 +1,16 @@
 <template>
-	<ui-dropdown ref="dropdown">
+	<Dropdown ref="dropdownEl">
 		<summary class="ml-2 btn btn-sm btn-square btn-ghost">
 			<Icon name="textypie:logo-fill" size="2rem" />
 		</summary>
 		<ul
 			class="menu dropdown-content z-1 w-52 p-2 ml-2 mt-1 shadow-sm bg-base-100/80 backdrop-blur-xs border border-base-300 rounded-box"
 		>
-			<ui-dropdown class="dropdown-right">
+			<li @click="dropdown?.close()">
+				<a @click.prevent="addTab({})">Create new tab</a>
+			</li>
+			<li></li>
+			<Dropdown class="dropdown-right">
 				<summary class="btn btn-ghost pl-3 h-9 font-normal pr-0 w-full justify-between">
 					Theme
 					<Icon name="bx:chevron-right" size="1.25rem" />
@@ -25,20 +29,28 @@
 						</a>
 					</li>
 				</ul>
-			</ui-dropdown>
+			</Dropdown>
 			<li @click="dropdown?.close()">
 				<nuxt-link to="/settings">Settings</nuxt-link>
 			</li>
-			<li v-if="$isTauri" @click="dropdown?.close()">
-				<a @click.prevent="openScriptsDir"> Your scripts folder </a>
-			</li>
+			<template v-if="$isTauri">
+				<li></li>
+				<li @click="dropdown?.close()">
+					<a @click.prevent="generateActions()"> Reload scripts </a>
+				</li>
+				<li @click="dropdown?.close()">
+					<a @click.prevent="openScriptsDir"> Your scripts folder </a>
+				</li>
+			</template>
 		</ul>
-	</ui-dropdown>
+	</Dropdown>
 </template>
 
 <script lang="ts" setup>
 import * as path from '@tauri-apps/api/path'
 import { openPath } from '@tauri-apps/plugin-opener'
+
+const { addTab } = useTabs()
 
 const openScriptsDir = async () => {
 	try {
@@ -50,7 +62,7 @@ const openScriptsDir = async () => {
 }
 const { $colorMode } = useNuxtApp()
 
-const dropdown = useTemplateRef('dropdown')
+const dropdown = useTemplateRef('dropdownEl')
 
 const themes = [
 	{ value: 'dark', icon: 'bx:moon' },

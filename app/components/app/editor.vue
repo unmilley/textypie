@@ -13,11 +13,7 @@
 			<Icon name="textypie:logo" size="4.5rem" />
 
 			<p class="relative w-full h-16">
-				<ActionBarPlaceholders
-					class="justify-center *:text-center *:pl-0"
-					:is-visible="!content.length"
-					:placeholders
-				/>
+				<Placeholders class="justify-center *:text-center *:pl-0" :is-visible="!content.length" :placeholders />
 			</p>
 		</div>
 	</div>
@@ -58,6 +54,7 @@ const MONACO_EDITOR_OPTIONS = computed(
 		contextmenu: false,
 		links: false,
 		acceptSuggestionOnCommitCharacter: false,
+		occurrencesHighlight: 'off',
 	}),
 )
 const content = defineModel<string>({ required: true })
