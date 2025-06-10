@@ -19,7 +19,7 @@
 <script setup lang="ts">
 const { open } = useModal('action-bar')
 
-const { data: combination, isFinished } = useIdStorage<Combinations>('master-key', [
+const { data: combination, isFinished } = useSettings<Combinations>('master-key', [
 	{ key: 'Ctrl', code: 'ControlLeft' },
 	{ key: 'q', code: 'KeyQ' },
 ])
