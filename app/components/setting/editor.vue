@@ -11,5 +11,5 @@
 </template>
 
 <script lang="ts" setup>
-const { data, isFinished } = useIdStorage<MonacoEditorOptions>('editor', undefined)
+const { data, isFinished } = useSettings<MonacoEditorOptions>('editor')
 </script>

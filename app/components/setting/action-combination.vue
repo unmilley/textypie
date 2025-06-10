@@ -11,7 +11,7 @@
 </template>
 
 <script lang="ts" setup>
-const { data: combination, isFinished } = useIdStorage<Combinations>('master-key', undefined)
+const { data: combination, isFinished } = useSettings<Combinations>('master-key')
 
 const supportedModifiers = ['Control', 'Shift', 'Alt']
 const notSupportedKeys = ['KeyZ', 'KeyY', 'KeyF']

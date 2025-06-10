@@ -16,7 +16,7 @@
 const { isVisible, open } = useModal('action-bar')
 const isApp = computed(() => useRoute().name === 'app')
 
-const { data: combination, isFinished } = useIdStorage<Combinations>('master-key', undefined)
+const { data: combination, isFinished } = useSettings<Combinations>('master-key')
 const kbd = computed(() => {
 	if (!isFinished.value || typeof combination.value === undefined || !combination.value.length) return '???'
 	return combination.value.map(({ key }) => key).join(' ')
