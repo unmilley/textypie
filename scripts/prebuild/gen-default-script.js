@@ -3,13 +3,6 @@ const generateDefaultScript = async () => {
 	const fs = await import('fs')
 	if (!fs) throw new Error('fs module not found')
 
-	const currentTime = new Date()
-	const { birthtime: creationTime } = await fs.promises
-		.stat(`app/assets/.default.json`)
-		.catch(() => ({ birthtime: new Date(0) }))
-	const oneMinuteAgo = new Date(currentTime.getTime() - 1 * 60000)
-	if (creationTime > oneMinuteAgo) return
-
 	const sdDir = await fs.promises.readdir('Scripts/default')
 
 	const config = []
@@ -21,10 +14,13 @@ const generateDefaultScript = async () => {
 		const match = file.match(regex)
 
 		if (match && match[1]) {
-			const comments = match[1].trim().replace(/\*$/, '')
+			const cleaned = match[1]
+				.replace(/[\n\r\u0085\u2028\u2029]/g, '')
+				.replace(/(\,)(\s*\})/g, '$2')
+				.replace(/[^{}]*({[\s\S]*}).*/, '$1')
 			let preConfig
 			try {
-				preConfig = JSON.parse(comments)
+				preConfig = JSON.parse(cleaned)
 			} catch {
 				continue
 			}

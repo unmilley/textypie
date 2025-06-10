@@ -8,8 +8,7 @@
 		"dev:tauri": "tauri dev",
 		"build": "nuxt build",
 		"generate": "nuxt generate",
-		"prebuild": "pnpm run gen-def-script",
-		"postinstall": "nuxt prepare & pnpm nvmrc",
+		"postinstall": "nuxt prepare & pnpm gen-def-script & pnpm nvmrc",
 		"gen-def-script": "node scripts/prebuild/gen-default-script.js",
 		"nvmrc": "node -v > .nvmrc"
 	},
