@@ -8,9 +8,9 @@ import {
 	readTextFile,
 	writeTextFile,
 } from '@tauri-apps/plugin-fs'
-import { ConfigSchema } from './schemas'
+import { generateConfig } from './generateConfig'
 
-const fn = (filename: string) => `.textypie${filename}`
+export const fn = (filename: string) => `.textypie${filename}`
 
 const isExists = (filename: string) => exists(fn(filename), { baseDir: BaseDirectory.Home })
 
@@ -33,38 +33,13 @@ const checkHomeDir = async () => {
 
 const generateCustomConfig = async () => {
 	try {
-		const scDir = await readDir(fn('/scripts'), { baseDir: BaseDirectory.Home })
+		const entries = await readDir(fn('/scripts'), { baseDir: BaseDirectory.Home })
 
-		const config = []
-		for (const { name } of scDir) {
-			if (!name.endsWith('.js')) continue
-
-			const file = await readTextFile(fn(`/scripts/${name}`), { baseDir: BaseDirectory.Home })
-
-			const regex = /\/\*\*([\s\S]*?)\*\//
-			const match = file.match(regex)
-
-			if (match && match[1]) {
-				const cleaned = match[1]
-					.replace(/[\n\r\u0085\u2028\u2029]/g, '')
-					.replace(/(\,)(\s*\})/g, '$2')
-					.replace(/[^{}]*({[\s\S]*}).*/, '$1')
-				let preConfig
-				try {
-					const parsed = JSON.parse(cleaned)
-					const result = ConfigSchema.safeParse(parsed)
-					if (result.error && !result.data) throw new Error(result.error.message)
-
-					preConfig = result.data
-				} catch (error: any) {
-					push.warning({ title: `Custom: [${name}]`, message: `${error.message}`, duration: 1e4 })
-					continue
-				}
-				preConfig.filename = `custom/${name.replace('.js', '')}`
-				config.push(preConfig)
-			} else {
-				push.warning({ title: `Custom: [${name}]`, message: 'Meta-comment not found', duration: 1e4 })
-			}
+		const config: Config[] = []
+		for await (const entry of entries) {
+			if (entry.isDirectory) continue
+			const result = await generateConfig(entry)
+			if (result !== null) config.push(result)
 		}
 
 		await writeTextFile(fn('/config.json'), JSON.stringify(config, null, 2), { baseDir: BaseDirectory.Home })
