@@ -1,0 +1,24 @@
+{
+	"$schema": "../gen/schemas/desktop-schema.json",
+	"identifier": "opener",
+	"description": "enables the opener permissions",
+	"windows": ["main"],
+	"permissions": [
+		"opener:default",
+		"opener:allow-open-url",
+		{
+			"identifier": "opener:allow-open-path",
+			"allow": [
+				{
+					"path": "$HOME"
+				},
+				{
+					"path": "$HOME/.textypie"
+				},
+				{
+					"path": "$HOME/.textypie/**/*"
+				}
+			]
+		}
+	]
+}
