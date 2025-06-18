@@ -3,7 +3,7 @@
 		"name":"Count Lines",
 		"description":"Get the line count of your text",
 		"author":"andipaetzold",
-		"icon":"bx:left-indent",
+		"icon":"mdi:counter",
 		"tags":"count,length,size,line"
 	}
 **/
