@@ -65,9 +65,9 @@ const { isVisible, close } = useModal('action-bar')
 const inputElement = useTemplateRef('inputElement')
 
 const action = shallowRef('')
-const actions = useState<Config[]>('actions', () => [])
+const { actionsResult } = useActions()
 
-const { results } = useFuse(action, actions, {
+const { results } = useFuse(action, actionsResult, {
 	matchAllWhenSearchEmpty: true,
 	fuseOptions: { findAllMatches: true, keys: ['name', 'description', 'tags'], threshold: 1 },
 	resultLimit: 10,

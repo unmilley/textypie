@@ -7,7 +7,7 @@ const getDefaultScripts = async (): Promise<Config[]> => {
 		push.error({ title: 'Actions', message: 'Default actions not found' })
 		return []
 	}
-	return defaultConfigJson
+	return defaultConfigJson as Config[]
 }
 const getCustomScripts = async (): Promise<Config[]> => {
 	const { config } = await customScripts._init_()
@@ -27,12 +27,13 @@ export const generateActions = async (isFirst = false) => {
 
 	log(defaultConfig.length, customConfig.length)
 
-	const actions = useState<Config[]>('actions', () => [])
+	const { actions, check } = useActions()
 	const newActions = [...defaultConfig, ...customConfig]
 
 	if (!isFirst) {
 		const { added, deleted } = compareArrays(actions.value, newActions, { withCounter: true })
 		push.info({ title: 'Actions', message: `Added: ${added} | Deleted: ${deleted}` })
 	}
-	actions.value = [...newActions]
+	actions.value = newActions
+	check()
 }

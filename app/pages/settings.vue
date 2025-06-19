@@ -7,9 +7,12 @@
 			</ul>
 		</div>
 		<!--  -->
-		<SettingActionCombination />
-		<SettingEditor />
-		<SettingTabs />
+		<div class="flex flex-wrap gap-4">
+			<SettingActionCombination />
+			<SettingEditor />
+			<SettingTabs />
+			<SettingConfigs />
+		</div>
 	</div>
 </template>
 
