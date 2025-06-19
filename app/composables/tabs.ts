@@ -1,5 +1,9 @@
 const InitialTab = { title: 'Untitled-1', content: '' }
 
+const useTabsDB = <T>(key: string, value: T) => {
+	return createIdb(key, value, { dbName: 'tabs', storeName: 'index', throttle: 5000 })
+}
+
 export const useTabs = () => {
 	const { data: tabs } = useTabsDB<Tab[]>('tabs', [{ ...InitialTab }])
 	const { data: activeTabTitle } = useTabsDB<string>('active', InitialTab.title)
