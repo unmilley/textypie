@@ -1,6 +1,6 @@
 {
 	"name": "textypie",
-	"version": "1.0.0",
+	"version": "1.0.2",
 	"private": true,
 	"type": "module",
 	"scripts": {
@@ -27,7 +27,6 @@
 		"daisyui": "^5.0.43",
 		"fuse.js": "^7.1.0",
 		"idb-keyval": "^6.2.2",
-		"lodash.groupby": "^4.6.0",
 		"notivue": "^2.4.5",
 		"nuxt": "^3.17.5",
 		"splitpanes": "^4.0.4",
@@ -39,7 +38,6 @@
 	},
 	"devDependencies": {
 		"@tauri-apps/cli": "^2.5.0",
-		"@types/lodash.groupby": "^4.6.9",
 		"@types/node": "^24.0.3",
 		"@types/splitpanes": "^2.2.6",
 		"monaco-editor": "^0.52.2",

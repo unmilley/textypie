@@ -44,8 +44,6 @@
 </template>
 
 <script lang="ts" setup>
-import groupBy from 'lodash.groupBy'
-
 const action = ref('')
 const { actions, disabledActions } = useActions()
 const { results } = useFuse(action, actions, {
@@ -59,7 +57,12 @@ const table = computed(() => {
 		.map(({ item }) => ({ ...item }))
 		.sort((a, b) => a.name.toLowerCase().localeCompare(b.name.toLowerCase()))
 
-	const letters = groupBy(filtered, (i) => i.name[0]?.toLowerCase())
+	const letters = filtered.reduce((acc, el) => {
+		const letter = el.name[0]!.toLowerCase()
+		if (acc[letter]) acc[letter].push(el)
+		else acc[letter] = [el]
+		return acc
+	}, {} as Record<string, Config[]>)
 
 	return { filtered, letters }
 })

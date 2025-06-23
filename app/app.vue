@@ -1,5 +1,5 @@
 <template>
-	<Body class="w-dvw h-dvh bg-base-200 overflow-hidden">
+	<Body class="w-dvw min-h-dvh bg-base-200 overflow-x-hidden" :class="bodyScroll">
 		<NuxtLayout>
 			<Notivue v-slot="item">
 				<NotivueSwipe :item="item">
@@ -17,6 +17,10 @@
 </template>
 
 <script setup lang="ts">
+const route = useRoute()
+
+const bodyScroll = computed(() => (route.name === 'app' ? 'overflow-hidden' : ''))
+
 const { open } = useModal('action-bar')
 
 const { data: combination, isFinished } = useSettings<Combinations>('master-key', [
@@ -47,6 +51,10 @@ watch(
 	},
 	{ deep: true, immediate: true },
 )
+
+onMounted(async () => {
+	await generateActions(true)
+})
 </script>
 
 <style>
