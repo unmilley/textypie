@@ -59,5 +59,8 @@ export default defineNuxtConfig({
 		clearScreen: false,
 		envPrefix: ['VITE_', 'TAURI_'],
 		server: { strictPort: true },
+		build: {
+			rollupOptions: { external: ['lodash.groupBy', '/scripts/'] },
+		},
 	},
 })
