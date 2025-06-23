@@ -31,7 +31,7 @@ export const generateConfig = async (entry: Dirent<string>): Promise<Config | nu
 		}
 		return preConfig
 	} else {
-		console.warn('Meta-comment not found')
+		console.warn(`[${entry.name}]: Meta-comment not found`)
 		return null
 	}
 }
