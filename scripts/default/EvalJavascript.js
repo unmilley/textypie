@@ -1,4 +1,4 @@
-/* 
+/**
 	{
 		"name":"Eval Javascript",
 		"description":"Runs your text as Javascript Code.",
@@ -6,7 +6,7 @@
 		"icon":"octicon:command-palette-16",
 		"tags":"js,script,run"
 	}
-*/
+**/
 
 export function main(input) {
 	const script = input.replace(/\n\n\/\/ Result:[\s\S]*$/, '')

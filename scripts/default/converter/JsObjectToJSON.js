@@ -8,12 +8,13 @@
   }
 **/
 
+import json5 from 'https://cdn.jsdelivr.net/npm/json5@2.2.3/+esm'
+
 export function main(input) {
 	try {
-		const data = input
-		eval('parsed = ' + data)
-		input = JSON.stringify(parsed)
-		return { data: input }
+		const parsed = json5.parse(input)
+		const result = JSON.stringify(parsed)
+		return { data: result }
 	} catch (e) {
 		return { error: e.message }
 	}
