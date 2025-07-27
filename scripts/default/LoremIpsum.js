@@ -75,13 +75,19 @@ export function main(input) {
 	]
 	let sentence = ''
 
-	for (let i = 0; i < 100; i++) {
+	input = tryParseInt(input)
+
+	for (let i = 0; i < input; i++) {
 		const pos = Math.floor(Math.random() * (words.length - 1))
 		sentence += words[pos] + ' '
 	}
 
 	sentence = sentence.charAt(0).toUpperCase() + sentence.slice(1).trim() + '.'
 
-	input = sentence
-	return { data: input }
+	return { data: sentence }
+}
+
+function tryParseInt(str, defaultValue = 100) {
+	const parsedValue = parseInt(str, 10)
+	return isNaN(parsedValue) ? defaultValue : Math.abs(parsedValue)
 }

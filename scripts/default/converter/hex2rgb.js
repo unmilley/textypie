@@ -11,7 +11,7 @@
 export function main(input) {
 	try {
 		const hexPattern = /^#?([0-9A-Fa-f]{3}){1,2}$/
-		if (!hexPattern.test(hex)) throw new Error('Please provide a valid hex code')
+		if (!hexPattern.test(input)) throw new Error('Please provide a valid hex code')
 
 		input = input.trim().replace(/^#/, '')
 		input = input.length === 3 ? input + input : input
