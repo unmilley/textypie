@@ -9,7 +9,9 @@
 				<AppMenu />
 			</div>
 			<div class="navbar-center">
-				<ActionBarButton />
+				<Teleport to=".navbar-end" :disabled="!isMobile" v-if="isMounted">
+					<ActionBarButton />
+				</Teleport>
 			</div>
 			<div class="navbar-end">
 				<slot />
@@ -20,6 +22,9 @@
 
 <script lang="ts" setup>
 import { getCurrentWindow, type Window } from '@tauri-apps/api/window'
+
+const isMounted = useMounted()
+const isMobile = useIsMobile()
 
 const { $isTauri } = useNuxtApp()
 

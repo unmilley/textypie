@@ -4,7 +4,7 @@
 			<Icon :name="item.icon" size="1.25rem" />
 			<div>
 				<h3 class="font-bold">{{ item.name }}</h3>
-				<pre class="text-pretty text-xs">{{ item.description }} {{ item.description }}</pre>
+				<pre class="text-pretty text-xs h-8 line-clamp-2">{{ item.description }}</pre>
 				<div class="flex gap-1 mt-1">
 					<div v-for="tag in tags.data" class="badge badge-xs badge-dash">
 						{{ tag }}

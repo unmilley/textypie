@@ -1,5 +1,5 @@
 <template>
-	<fieldset v-if="isFinished" class="fieldset w-xs bg-base-100 border border-base-300 p-4 rounded-box">
+	<fieldset v-if="isFinished" class="fieldset w-xs bg-base-100 border border-base-300 p-4 rounded-box hidden md:grid">
 		<legend class="fieldset-legend">Action combination</legend>
 
 		<label class="fieldset-label">Modifier</label>

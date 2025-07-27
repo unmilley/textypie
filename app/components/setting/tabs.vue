@@ -1,5 +1,8 @@
 <template>
-	<fieldset v-if="isFinished" class="fieldset w-xs bg-base-100 border border-base-300 p-4 rounded-box self-start">
+	<fieldset
+		v-if="isFinished"
+		class="fieldset w-xs bg-base-100 border border-base-300 p-4 rounded-box self-start hidden md:grid"
+	>
 		<legend class="fieldset-legend">Tabs</legend>
 
 		<label class="label">

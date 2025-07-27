@@ -6,7 +6,7 @@
 		@click="close"
 		@keydown.escape="close"
 	>
-		<div class="modal-box bg-base-200 w-128 rounded-xl" @click.stop="" @keydown.escape="close">
+		<div class="modal-box p-1 md:p-6 bg-base-200 max-w-128 rounded-xl" @click.stop="" @keydown.escape="close">
 			<div class="card bg-base-200 w-auto">
 				<div
 					class="card-body grid transition-all p-1"
@@ -28,11 +28,7 @@
 					</label>
 					<!--  -->
 					<div v-bind="containerProps" class="max-h-80 overflow-x-hidden overflow-y-scroll">
-						<ul
-							class="menu p-0 w-full flex-nowrap scroll-smooth"
-							v-auto-animate="{ duration: 150 }"
-							v-bind="wrapperProps"
-						>
+						<ul class="menu p-0 w-full flex-nowrap scroll-smooth" v-bind="wrapperProps">
 							<ActionBarItem
 								v-for="{ index, data: { item } } in list"
 								:key="index + item.name"
@@ -75,7 +71,8 @@ const { results } = useFuse(action, actionsResult, {
 const { list, containerProps, wrapperProps, scrollTo } = useVirtualList(results, {
 	itemHeight: (i) => {
 		const len = results.value[i]?.item.description.length ?? 50
-		return len <= 50 ? 78 : 98
+		// return len <= 50 ? 78 : 98
+		return 98
 	},
 })
 
