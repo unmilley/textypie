@@ -10,7 +10,7 @@
 	>
 		<span>{{ splitTitle(tab.title, 25) }}</span>
 		<button
-			v-if="isVisibleClose || isMobile"
+			v-if="isVisibleClose || (isMobile && !$isTauri)"
 			class="btn btn-square btn-xs btn-ghost md:invisible md:group-hover:visible"
 			@click="emits('removeTab', idx)"
 		>

@@ -1,7 +1,8 @@
 <template>
 	<fieldset
 		v-if="isFinished"
-		class="fieldset w-xs bg-base-100 border border-base-300 p-4 rounded-box self-start hidden md:grid"
+		class="fieldset w-xs bg-base-100 border border-base-300 p-4 rounded-box self-start"
+		:class="{ 'hidden md:grid': !$isTauri }"
 	>
 		<legend class="fieldset-legend">Tabs</legend>
 

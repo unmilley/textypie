@@ -9,7 +9,7 @@
 				<AppMenu />
 			</div>
 			<div class="navbar-center">
-				<Teleport to=".navbar-end" :disabled="!isMobile" v-if="isMounted">
+				<Teleport to=".navbar-end" :disabled="!isMobile || $isTauri" v-if="isMounted">
 					<ActionBarButton />
 				</Teleport>
 			</div>
