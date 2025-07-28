@@ -1,3 +1,4 @@
+import defaultScripts from '@/assets/.default.json'
 import { BaseDirectory, readTextFile, type DirEntry } from '@tauri-apps/plugin-fs'
 import { fn } from '.'
 import { ConfigSchema } from '../schemas'
@@ -25,7 +26,12 @@ export const generateConfig = async (entry: DirEntry): Promise<Config | null> =>
 			push.warning({ title: `Custom: [${entry.name}]`, message: `${error.message}`, duration: 1e4 })
 			return null
 		}
+
 		preConfig.filename = `custom/${entry.name.replace('.js', '')}`
+
+		const isFileExists = defaultScripts.some(({ name }) => name === preConfig.name)
+		if (isFileExists) preConfig.name += ` (2)`
+
 		return preConfig
 	} else {
 		console.warn('Meta-comment not found')
