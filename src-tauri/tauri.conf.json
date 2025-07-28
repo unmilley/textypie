@@ -1,7 +1,7 @@
 {
 	"$schema": "../node_modules/@tauri-apps/cli/config.schema.json",
-	"productName": "textypie",
-	"version": "1.0.0",
+	"productName": "Textypie",
+	"version": "1.1.0",
 	"identifier": "uno.textypie.mill",
 	"build": {
 		"frontendDist": "../dist",
@@ -13,6 +13,8 @@
 		"windows": [
 			{
 				"title": "Textypie",
+				"minWidth": 390,
+				"minHeight": 294,
 				"width": 800,
 				"height": 636,
 				"resizable": true,
